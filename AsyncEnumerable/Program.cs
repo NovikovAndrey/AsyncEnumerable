@@ -1,12 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AsyncEnumerable
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Repository repo = new Repository();
+            IAsyncEnumerable<string> data = repo.GetDataAsync();
+            await foreach(var name in data)
+            {
+                Console.WriteLine(name);
+            }
         }
     }
 }
